@@ -1,4 +1,4 @@
-import { prisma } from "../../prisma";
+import prisma from "../../prisma";
 import retrieveUserService from "./retrieveUser.service";
 import retrieveUserByIdService from "./retrieveUserById.service";
 import createUserService from "./createUser.service";

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 
-export const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 async function main() {}
 
@@ -9,3 +9,5 @@ main().catch(async (e) => {
   await prisma.$disconnect();
   process.exit(1);
 });
+
+export default prisma;
