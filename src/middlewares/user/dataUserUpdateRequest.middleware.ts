@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors/AppError";
+import { AppError } from "../../errors/AppError";
 
-export const dataUserCreateRequest = (
+export const dataUserUpdateRequest = (
   req: Request,
   res: Response,
   next: NextFunction
@@ -21,7 +21,7 @@ export const dataUserCreateRequest = (
 
   if (!exists) {
     throw new AppError(
-      "It's only possible create user with properties: fullname, email, password and phone."
+      "It's only possible update properties: fullname, email, password and phone."
     );
   }
 

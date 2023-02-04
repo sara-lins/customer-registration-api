@@ -5,10 +5,10 @@ import { loginUserController } from "../../controllers/user/loginUser.controller
 import { retrieveUserController } from "../../controllers/user/retrieveUser.controller";
 import { retrieveUserByIdController } from "../../controllers/user/retrieveUserById.controller";
 import { updateUserController } from "../../controllers/user/updateUser.controller";
-import { authToken } from "../../middlewares/authToken.middleware";
-import { dataUserCreateRequest } from "../../middlewares/dataUserCreateRequest.middleware";
-import { dataUserUpdateRequest } from "../../middlewares/dataUserUpdateRequest.middleware";
-import { isUserIdExists } from "../../middlewares/isUserExists.middleware";
+import { authToken } from "../../middlewares/globals/authToken.middleware";
+import { dataUserCreateRequest } from "../../middlewares/user/dataUserCreateRequest.middleware";
+import { dataUserUpdateRequest } from "../../middlewares/user/dataUserUpdateRequest.middleware";
+import { isUserIdExists } from "../../middlewares/user/isUserExists.middleware";
 
 const usersRoutes = Router();
 

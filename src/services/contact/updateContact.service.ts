@@ -1,8 +1,12 @@
 import { Contact } from "@prisma/client";
+import { IContactDataUpdate, IContactResponse } from "../../interfaces/contact";
 import prisma from "./_index";
 
-async function updateContactService(id: string, dataContact): Promise<Contact> {
-  const contactUpdated = await prisma.contact.update({
+export const updateContactService = async (
+  id: string,
+  dataContact: IContactDataUpdate
+): Promise<IContactResponse> => {
+  const contactUpdated: IContactResponse = await prisma.contact.update({
     where: {
       id,
     },
@@ -10,6 +14,4 @@ async function updateContactService(id: string, dataContact): Promise<Contact> {
   });
 
   return contactUpdated;
-}
-
-export default updateContactService;
+};

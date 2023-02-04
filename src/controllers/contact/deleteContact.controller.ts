@@ -4,8 +4,6 @@ import { deleteContactService } from "../../services/contact/deleteContact.servi
 export const deleteContactController = async (req: Request, res: Response) => {
   const { id: contactId } = req.params;
 
-  console.log(contactId);
-
   await deleteContactService(contactId);
 
   return res.status(204).send();

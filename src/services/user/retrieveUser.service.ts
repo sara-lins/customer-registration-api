@@ -1,8 +1,7 @@
-import { User } from "@prisma/client";
 import { IUserResponse } from "../../interfaces/user";
 import prisma from "./_index";
 
-const retrieveUserService = async (): Promise<IUserResponse[]> => {
+export const retrieveUserService = async (): Promise<IUserResponse[]> => {
   const users: IUserResponse[] = await prisma.user.findMany();
 
   users.map((item) => {
@@ -15,5 +14,3 @@ const retrieveUserService = async (): Promise<IUserResponse[]> => {
 
   return users;
 };
-
-export default retrieveUserService;
