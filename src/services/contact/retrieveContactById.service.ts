@@ -1,16 +1,14 @@
-import { Contact } from "@prisma/client";
+import { IContactResponse } from "../../interfaces/contact";
 import prisma from "./_index";
 
-const retrieveContactByIdService = async (
+export const retrieveContactByIdService = async (
   id: string
-): Promise<Contact | null> => {
-  const contactById = await prisma.contact.findUnique({
+): Promise<IContactResponse> => {
+  const contactById: IContactResponse | null = await prisma.contact.findUnique({
     where: {
       id,
     },
   });
 
-  return contactById;
+  return contactById!!;
 };
-
-export default retrieveContactByIdService;

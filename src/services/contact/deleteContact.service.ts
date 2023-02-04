@@ -1,3 +1,4 @@
+import { AppError } from "../../errors/AppError";
 import prisma from "./_index";
 
 export const deleteContactService = async (id: string) => {
@@ -6,6 +7,10 @@ export const deleteContactService = async (id: string) => {
       id,
     },
   });
+
+  if (!contactDeleted) {
+    throw new AppError("Internal database error");
+  }
 
   return contactDeleted;
 };

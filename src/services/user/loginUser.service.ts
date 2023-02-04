@@ -4,7 +4,7 @@ import { ILogin } from "../../interfaces/user";
 import { compare } from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const loginUserService = async ({
+export const loginUserService = async ({
   email,
   password,
 }: ILogin): Promise<string> => {
@@ -31,5 +31,3 @@ const loginUserService = async ({
     }
   );
 };
-
-export default loginUserService;

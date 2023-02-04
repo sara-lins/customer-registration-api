@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors/AppError";
-import prisma from "../prisma";
+import { AppError } from "../../errors/AppError";
+import prisma from "../../prisma";
 
 export const isUserIdExists = async (
   req: Request,
