@@ -1,8 +1,10 @@
-import { User } from "@prisma/client";
+import { AppError } from "../../errors/AppError";
 import { IUserResponse } from "../../interfaces/user";
 import prisma from "./_index";
 
-const retrieveUserByIdService = async (id: string): Promise<IUserResponse> => {
+export const retrieveUserByIdService = async (
+  id: string
+): Promise<IUserResponse> => {
   const userById: IUserResponse | null = await prisma.user.findUnique({
     where: {
       id,
@@ -13,5 +15,3 @@ const retrieveUserByIdService = async (id: string): Promise<IUserResponse> => {
 
   return userById!!;
 };
-
-export default retrieveUserByIdService;

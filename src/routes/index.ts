@@ -1,8 +1,10 @@
 import { Router } from "express";
+import { errorMiddleware } from "../middlewares/error";
 import contactsRoutes from "./contact/contact.route";
 import usersRoutes from "./user/user.route";
 
-export const router = Router();
+export const routers = Router();
 
-router.use("/user", usersRoutes);
-router.use("/contact", contactsRoutes);
+routers.use("/user", usersRoutes);
+routers.use("/contact", contactsRoutes);
+routers.use(errorMiddleware);

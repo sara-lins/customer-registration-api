@@ -1,13 +1,15 @@
+import { AppError } from "../../errors/AppError";
 import prisma from "./_index";
+import "express-async-errors";
 
-const deleteUserService = async (id: string) => {
+export const deleteUserService = async (id: string) => {
   const userDeleted = await prisma.user.delete({
     where: {
       id,
     },
   });
 
-  return userDeleted;
+  if (!userDeleted) {
+    throw new AppError("Internal database error");
+  }
 };
-
-export default deleteUserService;
