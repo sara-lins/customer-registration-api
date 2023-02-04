@@ -1,6 +1,6 @@
 import prisma from "./_index";
 
-const deleteContactService = async (id: string) => {
+export const deleteContactService = async (id: string) => {
   const contactDeleted = await prisma.contact.delete({
     where: {
       id,
@@ -9,5 +9,3 @@ const deleteContactService = async (id: string) => {
 
   return contactDeleted;
 };
-
-export default deleteContactService;

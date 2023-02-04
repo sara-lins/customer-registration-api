@@ -1,10 +1,12 @@
 import { Request, Response } from "express";
-import deleteUserService from "../../services/user/deleteUser.service";
+import { deleteContactService } from "../../services/contact/deleteContact.service";
 
-export const deleteUserController = async (req: Request, res: Response) => {
-  const { id: userId } = req.params;
+export const deleteContactController = async (req: Request, res: Response) => {
+  const { id: contactId } = req.params;
 
-  await deleteUserService(userId);
+  console.log(contactId);
+
+  await deleteContactService(contactId);
 
   return res.status(204).send();
 };

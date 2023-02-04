@@ -27,7 +27,7 @@ const loginUserService = async ({
     process.env.SECRET_KEY!,
     {
       expiresIn: "24h",
-      subject: user?.id,
+      subject: user.id,
     }
   );
 };
