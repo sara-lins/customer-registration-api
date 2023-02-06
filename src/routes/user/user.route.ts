@@ -6,8 +6,10 @@ import { retrieveUserController } from "../../controllers/user/retrieveUser.cont
 import { retrieveUserByIdController } from "../../controllers/user/retrieveUserById.controller";
 import { updateUserController } from "../../controllers/user/updateUser.controller";
 import { authToken } from "../../middlewares/globals/authToken.middleware";
+import { errorMiddleware } from "../../middlewares/globals/error";
 import { dataUserCreateRequest } from "../../middlewares/user/dataUserCreateRequest.middleware";
 import { dataUserUpdateRequest } from "../../middlewares/user/dataUserUpdateRequest.middleware";
+import { isAdmin } from "../../middlewares/user/isAdm.middleware";
 import { isUserIdExists } from "../../middlewares/user/isUserExists.middleware";
 
 const usersRoutes = Router();
@@ -23,6 +25,13 @@ usersRoutes.patch(
   dataUserUpdateRequest,
   updateUserController
 );
-usersRoutes.delete("/:id", authToken, isUserIdExists, deleteUserController);
+usersRoutes.delete(
+  "/:id",
+  authToken,
+  isAdmin,
+  isUserIdExists,
+  deleteUserController
+);
+usersRoutes.use(errorMiddleware);
 
 export default usersRoutes;

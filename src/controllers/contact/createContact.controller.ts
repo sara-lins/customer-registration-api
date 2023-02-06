@@ -1,11 +1,21 @@
 import { Request, Response } from "express";
+import { AppError } from "../../errors/AppError";
 import { createContactService } from "../../services/contact/createContact.service";
 
 export const createContactController = async (req: Request, res: Response) => {
-  const { ...data } = req.body;
-  const { id } = req.user;
+  try {
+    const { ...data } = req.body;
+    const { id } = req.user;
 
-  const contact = await createContactService(id, data);
+    const contact = await createContactService(id, data);
 
-  return res.status(201).json(contact);
+    return res.status(201).json(contact);
+  } catch (error) {
+    if (error instanceof AppError) {
+      return res.status(400).json({
+        status: "Error",
+        message: error.message,
+      });
+    }
+  }
 };

@@ -8,6 +8,7 @@ import { authToken } from "../../middlewares/globals/authToken.middleware";
 import { dataContactCreateRequest } from "../../middlewares/contact/dataContactCreateRequest.middleware";
 import { dataContactUpdateRequest } from "../../middlewares/contact/dataContactUpdateRequest.middleware";
 import { isContactIdExists } from "../../middlewares/contact/isContactExists.middleware";
+import { errorMiddleware } from "../../middlewares/globals/error";
 
 const contactsRoutes = Router();
 
@@ -15,6 +16,7 @@ contactsRoutes.get("", retrieveContactController);
 contactsRoutes.get("/:id", isContactIdExists, retrieveContactByIdController);
 contactsRoutes.post(
   "/register",
+  authToken,
   dataContactCreateRequest,
   createContactController
 );
@@ -31,5 +33,6 @@ contactsRoutes.delete(
   isContactIdExists,
   deleteContactController
 );
+contactsRoutes.use(errorMiddleware);
 
 export default contactsRoutes;

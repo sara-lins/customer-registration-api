@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { errorMiddleware } from "../middlewares/error";
+import { errorMiddleware } from "../middlewares/globals/error";
 import contactsRoutes from "./contact/contact.route";
 import usersRoutes from "./user/user.route";
 

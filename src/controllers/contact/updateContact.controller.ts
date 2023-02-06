@@ -1,11 +1,21 @@
 import { Request, Response } from "express";
-import updateContactService from "../../services/contact/updateContact.service";
+import { AppError } from "../../errors/AppError";
+import { updateContactService } from "../../services/contact/updateContact.service";
 
 export const updateContactController = async (req: Request, res: Response) => {
-  const { id: contactId } = req.params;
-  const { ...data } = req.body;
+  try {
+    const { id: contactId } = req.params;
+    const { ...data } = req.body;
 
-  const contactUpdated = await updateContactService(contactId, data);
+    const contactUpdated = await updateContactService(contactId, data);
 
-  return res.status(200).json(contactUpdated);
+    return res.status(200).json(contactUpdated);
+  } catch (error) {
+    if (error instanceof AppError) {
+      return res.status(400).json({
+        status: "Error",
+        message: error.message,
+      });
+    }
+  }
 };

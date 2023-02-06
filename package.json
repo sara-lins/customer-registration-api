@@ -9,7 +9,7 @@
     "dev": "nodemon ./src/server.ts",
     "test": "jest --forceExit",
     "build": "tsc",
-    "start": "node ./dist/src/server.js",
+    "start": "node ./src/server.ts",
     "migrate": "yarn prisma migrate dev"
   },
   "devDependencies": {

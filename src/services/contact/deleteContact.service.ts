@@ -9,7 +9,7 @@ export const deleteContactService = async (id: string) => {
   });
 
   if (!contactDeleted) {
-    throw new AppError("Internal database error");
+    throw new AppError("Internal database error", 500);
   }
 
   return contactDeleted;

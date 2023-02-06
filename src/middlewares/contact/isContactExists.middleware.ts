@@ -1,5 +1,4 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../../errors/AppError";
 import prisma from "../../prisma";
 
 export const isContactIdExists = async (
@@ -7,16 +6,24 @@ export const isContactIdExists = async (
   res: Response,
   next: NextFunction
 ) => {
-  const { id } = req.params;
-  const isContactExists = await prisma.user.findUnique({
-    where: {
-      id,
-    },
-  });
+  try {
+    const { id } = req.params;
 
-  if (!isContactExists) {
-    throw new AppError("ID Contact not exists");
+    const isContactExists = await prisma.contact.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!isContactExists) {
+      throw new Error("ID Contact not exists");
+    }
+
+    next();
+  } catch (error) {
+    return res.status(400).json({
+      status: "Error",
+      message: error.message,
+    });
   }
-
-  next();
 };

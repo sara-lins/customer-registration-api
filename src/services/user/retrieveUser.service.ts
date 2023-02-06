@@ -12,5 +12,17 @@ export const retrieveUserService = async (): Promise<IUserResponse[]> => {
     }
   });
 
+  const arrWithoutAdmin = users.filter((item) => {
+    for (const key in item) {
+      if (key === "role" && item[key] !== "ADM") {
+        return item;
+      }
+    }
+  });
+
+  if (arrWithoutAdmin) {
+    return arrWithoutAdmin;
+  }
+
   return users;
 };
